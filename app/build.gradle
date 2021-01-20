@@ -22,7 +22,7 @@ android {
     }
 
     buildTypes {
-        def debugApi = '"https://"'
+        def debugApi = '"https://student-sport-results.herokuapp.com/api/"'
         def releaseApi = '"UNKNOWN"'
 
         release {

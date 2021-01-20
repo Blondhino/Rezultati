@@ -12,7 +12,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val CURL_LOG_TAG = "< CURL >"
+const val CURL_LOG_TAG = "Ok < CURL >"
 
 val networkModule = module {
     single { provideRetrofit(get()) }

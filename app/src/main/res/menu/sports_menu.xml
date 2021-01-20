@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/sport_1"
+        android:title="Nogomet"
+        />
+
+    <item
+        android:id="@+id/sport_2"
+        android:title="Rukomet"
+        />
+
+    <item
+        android:id="@+id/sport_3"
+        android:title="Sport 3"
+        />
+
+    <item
+        android:id="@+id/sport_4"
+        android:title="Sport 4"
+        />
+
+    <item
+        android:id="@+id/sport_5"
+        android:title="Sport 5"
+        />
+</menu>
