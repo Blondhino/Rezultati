@@ -8,7 +8,8 @@ import com.blondi.rezultati.R
 import com.blondi.rezultati.common.model.MatchModel
 import com.blondi.rezultati.databinding.ItemMatchBinding
 
-class MatchAdapter(val listener : OnMatchItemClickListener) : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>() {
+class MatchAdapter(val listener: OnMatchItemClickListener) :
+    RecyclerView.Adapter<MatchAdapter.MatchViewHolder>() {
     private val matchList: ArrayList<MatchModel> = arrayListOf()
 
 
@@ -18,12 +19,17 @@ class MatchAdapter(val listener : OnMatchItemClickListener) : RecyclerView.Adapt
         notifyDataSetChanged()
     }
 
+    fun clearData() {
+        this.matchList.clear()
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
         val binding: ItemMatchBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.item_match,
-                parent,
-                false
+            LayoutInflater.from(parent.context),
+            R.layout.item_match,
+            parent,
+            false
         )
         return MatchViewHolder(binding, listener)
     }
@@ -34,10 +40,18 @@ class MatchAdapter(val listener : OnMatchItemClickListener) : RecyclerView.Adapt
 
     override fun getItemCount() = matchList.size
 
-    inner class MatchViewHolder(val binding: ItemMatchBinding, listener : OnMatchItemClickListener) : RecyclerView.ViewHolder(binding.root) {
+    inner class MatchViewHolder(private val binding: ItemMatchBinding, listener: OnMatchItemClickListener) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(match: MatchModel) {
             binding.title = "${match.teamOne?.name} - ${match.teamTwo?.name}"
+            binding.root.setOnClickListener {
+                match.id?.let { matchId ->
+                    listener.onMatchClick(
+                        matchId
+                    )
+                }
+            }
         }
     }
 

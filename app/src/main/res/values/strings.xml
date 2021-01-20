@@ -3,4 +3,6 @@
     <string name="sports">Sports</string>
     <string name="nogomet">Nogomet</string>
     <string name="matches">Matches</string>
+    <string name="minus">-</string>
+    <string name="events_during_match">Details</string>
 </resources>

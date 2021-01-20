@@ -17,9 +17,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_margin"
         android:clickable="true"
         android:focusable="true"
+        android:padding="@dimen/default_margin"
         android:background="@drawable/ripple_gray"
         >
 
@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
             android:text="@{name}"
-            android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

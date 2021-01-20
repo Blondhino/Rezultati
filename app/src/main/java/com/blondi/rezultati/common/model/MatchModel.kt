@@ -9,5 +9,7 @@ data class MatchModel(
         val team_two : Int?,
         val sport : Sport?,
         val teamOne: Team?,
-        val teamTwo: Team?
+        val teamTwo: Team?,
+        val score : String?,
+        val events : ArrayList<Event>
 )

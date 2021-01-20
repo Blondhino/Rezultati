@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val repoModule = module {
     single { HomeRepo(get(),get()) }
-    single {MatchDetailsRepo()}
+    single {MatchDetailsRepo(get(),get())}
 }

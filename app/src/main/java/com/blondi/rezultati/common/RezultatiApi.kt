@@ -1,5 +1,6 @@
 package com.blondi.rezultati.common
 import com.blondi.rezultati.common.api.Routes.API_GET_ALL_MATCHES
+import com.blondi.rezultati.common.api.Routes.API_GET_MATCH_DETAILS
 import com.blondi.rezultati.common.api.Routes.API_GET_SPORTS
 import com.blondi.rezultati.common.model.MatchModel
 import com.blondi.rezultati.common.model.Sport
@@ -14,4 +15,9 @@ interface RezultatiApi {
 
     @GET(API_GET_SPORTS)
     suspend fun getAllSports():Response<ArrayList<Sport>>
+
+    @GET(API_GET_MATCH_DETAILS)
+    suspend fun getSingleMatchDetails(@Path("matchId") matchId: Int): Response<MatchModel>
+
+
 }

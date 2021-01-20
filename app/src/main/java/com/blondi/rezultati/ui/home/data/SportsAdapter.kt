@@ -8,7 +8,8 @@ import com.blondi.rezultati.R
 import com.blondi.rezultati.common.model.Sport
 import com.blondi.rezultati.databinding.ItemSportBinding
 
-class SportsAdapter(val listener : OnSportItemClickListener) : RecyclerView.Adapter<SportsAdapter.SportViewHolder>() {
+class SportsAdapter(val listener: OnSportItemClickListener) :
+    RecyclerView.Adapter<SportsAdapter.SportViewHolder>() {
     private val sportLIst: ArrayList<Sport> = arrayListOf()
 
 
@@ -20,10 +21,10 @@ class SportsAdapter(val listener : OnSportItemClickListener) : RecyclerView.Adap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SportViewHolder {
         val binding: ItemSportBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.item_sport,
-                parent,
-                false
+            LayoutInflater.from(parent.context),
+            R.layout.item_sport,
+            parent,
+            false
         )
         return SportViewHolder(binding, listener)
     }
@@ -34,14 +35,28 @@ class SportsAdapter(val listener : OnSportItemClickListener) : RecyclerView.Adap
 
     override fun getItemCount() = sportLIst.size
 
-    inner class SportViewHolder(val binding: ItemSportBinding, listener : OnSportItemClickListener) : RecyclerView.ViewHolder(binding.root) {
+    inner class SportViewHolder(val binding: ItemSportBinding, listener: OnSportItemClickListener) :
+        RecyclerView.ViewHolder(binding.root) {
+        init {
+
+        }
 
         fun bind(sport: Sport) {
-          binding.name = sport.name
+            binding.name = sport.name
+            binding.root.setOnClickListener {
+                sport.id?.let { sportId ->
+                    sport.name?.let { sportName ->
+                        listener.onSportClick(
+                            sportId,
+                            sportName
+                        )
+                    }
+                }
+            }
         }
     }
 
     interface OnSportItemClickListener {
-        fun onSportClick(matchId: Int)
+        fun onSportClick(sportId: Int, sportName: String)
     }
 }

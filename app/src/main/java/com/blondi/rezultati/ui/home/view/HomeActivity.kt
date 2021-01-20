@@ -28,17 +28,17 @@ class HomeActivity : BaseActivity(), MatchAdapter.OnMatchItemClickListener,
         binding = ActivityHomeBinding.inflate(layoutInflater)
         binding.activity = this
         binding.matchRecycler.adapter = matchAdapter
-        binding.sportsRecycler.adapter=sportsAdapter
+        binding.sportsRecycler.adapter = sportsAdapter
         val view = binding.root
         setContentView(view)
         setupUI()
-        fetchData()
+        fetchData(1)
         observeData()
     }
 
-    private fun fetchData() {
+    private fun fetchData(sportId: Int) {
         showLoadingDialog()
-        viewModel.fetchMatches(1)
+        viewModel.fetchMatches(sportId)
     }
 
     private fun setupUI() {
@@ -51,17 +51,16 @@ class HomeActivity : BaseActivity(), MatchAdapter.OnMatchItemClickListener,
 
     private fun observeData() {
         viewModel.matches.observe(this, matchesObserver)
-        viewModel.sports.observe(this,sportsObserver)
+        viewModel.sports.observe(this, sportsObserver)
     }
 
 
     private val matchesObserver = Observer<ArrayList<MatchModel>> {
         matchAdapter.insertData(it)
-        binding.toolbarTitle.text = it[0].sport?.name
         hideLoadingDialog()
     }
 
-    private val sportsObserver = Observer<ArrayList<Sport>>{
+    private val sportsObserver = Observer<ArrayList<Sport>> {
         sportsAdapter.insertData(it)
     }
 
@@ -81,8 +80,12 @@ class HomeActivity : BaseActivity(), MatchAdapter.OnMatchItemClickListener,
         const val MATCH_ID = "matchId"
     }
 
-    override fun onSportClick(matchId: Int) {
-
+    override fun onSportClick(sportId: Int, sportName: String) {
+        Log.d("onSportClick", "called $sportId")
+        binding.drawerLayout.closeDrawers()
+        matchAdapter.clearData()
+        binding.toolbarTitle.text = sportName
+        fetchData(sportId)
     }
 
 }
