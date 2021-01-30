@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="name"
+            name="playerName"
             type="String" />
         <variable
             name="holder"
@@ -23,30 +23,27 @@
         android:background="@drawable/ripple_gray"
         >
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_text"
+
+        <TextView
+            android:id="@+id/playerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
-            android:text="@{name}"
-            android:textSize="15sp"
-            android:fontFamily="sans-serif-medium"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp"
+            android:text="@{playerName}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="Nogomet" />
+            tools:text="Ivo Ivić" />
+
+
 
         <ImageView
+            app:layout_constraintTop_toBottomOf="@id/playerName"
+            android:layout_marginTop="@dimen/large_margin"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginTop="18dp"
-            android:src="@color/separator"
-            app:layout_constraintTop_toBottomOf="@id/title_text"
-            tools:layout_editor_absoluteX="8dp" />
-
-
-
-
+            android:src="#BABABA"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

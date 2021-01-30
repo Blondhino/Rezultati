@@ -1,6 +1,7 @@
 package com.blondi.rezultati.common.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class MatchModel(
         val id : Int?,

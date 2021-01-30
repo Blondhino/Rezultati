@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Rezultati">
-        <activity android:name=".ui.matchDetails.view.MatchDetailsActivity"></activity>
+        <activity android:name=".ui.matchDetails.view.MatchDetailsActivity"/>
+        <activity android:name=".ui.teamDetails.TeamDetailsActivity"/>
         <activity android:name=".ui.home.view.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

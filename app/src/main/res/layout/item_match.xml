@@ -41,6 +41,15 @@
             app:layout_constraintVertical_bias="0.0"
             tools:text="Dinamo - Hajduk" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            tools:text="2 : 0" />
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView"
@@ -51,7 +60,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text"
             tools:layout_editor_absoluteX="8dp" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

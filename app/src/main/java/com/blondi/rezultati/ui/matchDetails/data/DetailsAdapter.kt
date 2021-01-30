@@ -8,6 +8,7 @@ import com.blondi.rezultati.R
 import com.blondi.rezultati.common.model.Event
 import com.blondi.rezultati.common.model.Player
 import com.blondi.rezultati.common.model.Sport
+import com.blondi.rezultati.common.model.Team
 import com.blondi.rezultati.databinding.ItemEventBinding
 import com.blondi.rezultati.databinding.ItemSportBinding
 
@@ -15,6 +16,7 @@ class DetailsAdapter() :
     RecyclerView.Adapter<DetailsAdapter.EventViewHolder>() {
     private val eventList: ArrayList<Event> = arrayListOf()
     private val playerList: ArrayList<Player> = arrayListOf()
+    private val clubList: ArrayList<Team> = arrayListOf()
 
 
     fun insertEvents(eventList: ArrayList<Event>) {
@@ -22,10 +24,12 @@ class DetailsAdapter() :
         this.eventList.addAll(eventList)
         notifyDataSetChanged()
     }
+
     fun insertPlayers(playerList: ArrayList<Player>) {
-        this.playerList.clear()
         this.playerList.addAll(playerList)
-        notifyDataSetChanged()
+    }
+    fun insertClub(club: Team) {
+        this.clubList.add(club)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -47,13 +51,48 @@ class DetailsAdapter() :
     inner class EventViewHolder(val binding: ItemEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
-            binding.setTime("35 '")
-            binding.setPart("Part 1")
-            binding.setEventType("Red Card")
-            binding.setPlayerName("Ivo Ivić")
-            binding.setClub("Hajduk")
+            binding.setTime(calculateTime(event.time))
+            binding.setPart("(Part ${event.interval}) --")
+            binding.setEventType(event.type?.let { findEventType(it) })
+            binding.setPlayerName(findPlayerName(event.player_id))
+            binding.setClub(findClubName(event.team_id))
         }
     }
+
+    private fun findClubName(teamId: Int?): String? {
+        for( i in 0 until clubList.size){
+            if(teamId==clubList[i].id){
+                return clubList[i].name
+            }
+        }
+        return "Unknown"
+    }
+
+    private fun findPlayerName(playerId: Int?): String? {
+        for (i in 0 until playerList.size) {
+            if (playerId == playerList[i].id)
+                return playerList[i].name
+        }
+        return "No name"
+    }
+
+    private fun findEventType(type: String): String? {
+        when (type) {
+            "red_card" -> {
+                return "Red Card"
+            }
+            "yellow_card" -> {
+                return "Yellow Card"
+            }
+            "penalty_kick" -> {
+                return "Penalty kick"
+            }
+            else -> return "Goal"
+        }
+
+    }
+
+    private fun calculateTime(time: Long?) = (time?.div(100000)).toString()+" '"
 
 
 }
